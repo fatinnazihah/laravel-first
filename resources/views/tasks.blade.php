@@ -36,12 +36,14 @@
             @foreach($tasks->reverse() as $post)
             <div class="card mb-4 post-card">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
                         <h5 class="fw-bold m-0">{{ $post->title }}</h5>
                         <small class="text-muted">{{ $post->created_at->diffForHumans() }}</small>
                     </div>
                     
-                    <p class="card-text">{{ $post->description }}</p>
+                    @if($post->description)
+                        <p class="card-text mt-2" style="white-space: pre-wrap;">{{ $post->description }}</p>
+                    @endif
 
                     @if($post->attachment)
                         <div class="rounded-3 overflow-hidden border mb-3 bg-light">
@@ -55,7 +57,7 @@
                                     Your browser does not support the video tag.
                                 </video>
                             @else
-                                <img src="{{ asset('storage/' . $post->attachment) }}" class="img-fluid w-100 d-block">
+                                <img src="{{ asset('storage/' . $post->attachment) }}" class="img-fluid w-100 d-block" alt="Post content">
                             @endif
                         </div>
                     @endif
@@ -68,7 +70,6 @@
                                     ❤️ {{ $post->likes ?? 0 }}
                                 </button>
                             </form>
-
                             <a href="/post/{{ $post->id }}/edit" class="btn btn-outline-primary btn-sm rounded-pill px-3">
                                 ✏️ Edit
                             </a>
@@ -85,12 +86,6 @@
                 </div>
             </div>
             @endforeach
-
-            @if($tasks->isEmpty())
-                <div class="text-center py-5">
-                    <p class="text-muted">No posts yet. Be the first to share something!</p>
-                </div>
-            @endif
         </div>
     </div>
 
