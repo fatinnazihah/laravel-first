@@ -13,7 +13,6 @@
     <header class="py-3 mb-5 shadow-sm bg-white border-bottom border-warning border-3">
         <div class="container d-flex justify-content-between align-items-center">
             <h1 class="h3 m-0 fw-800">🐾 Cat Feed</h1>
-            <span class="badge rounded-pill bg-warning text-dark px-3 py-2">Tabby Mode: ON</span>
         </div>
     </header>
 
