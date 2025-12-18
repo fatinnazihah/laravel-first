@@ -49,10 +49,24 @@ class TaskController extends Controller
     // Save the updated post
     public function update(Request $request, $id) {
         $post = Task::findOrFail($id);
-        $post->update([
+
+        // Validate the new input
+        $request->validate([
+            'title' => 'required',
+            'attachment' => 'nullable|file|mimes:jpg,jpeg,png,mp4,mov|max:20000',
+        ]);
+
+        $data = [
             'title' => $request->title,
             'description' => $request->description,
-        ]);
+        ];
+
+        // If a new file is uploaded, replace the old path
+        if ($request->hasFile('attachment')) {
+            $data['attachment'] = $request->file('attachment')->store('uploads', 'public');
+        }
+
+        $post->update($data);
         return redirect('/')->with('success', 'Post updated!');
     }
 
