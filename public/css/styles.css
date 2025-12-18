@@ -1,21 +1,17 @@
-/* Cat Feed Tabby Theme */
+/* Add this to your existing public/css/cat-theme.css */
 body { 
-    background-color: #fdf5e6; /* Creamy Fur */
+    background-color: #fdf5e6; 
     font-family: 'Nunito', sans-serif;
-    color: #5d4037; /* Charcoal/Brown stripes */
+    color: #5d4037; 
 }
 
-h1, h2, h5 { 
-    color: #e67e22; /* Tabby Orange */
-    font-weight: 800; 
-}
+h1, h2, h5 { color: #e67e22; font-weight: 800; }
 
 .post-card { 
     border-radius: 20px; 
-    border: 3px solid #f3e5ab; /* Ginger stripes */
+    border: 3px solid #f3e5ab; 
     box-shadow: 0 6px 15px rgba(230, 126, 34, 0.1); 
     background: white;
-    transition: transform 0.2s;
 }
 
 .btn-primary { 
@@ -23,10 +19,9 @@ h1, h2, h5 {
     border: none; 
     border-radius: 50px;
     font-weight: 700;
-    padding: 10px 20px;
 }
 
-.btn-primary:hover { background-color: #d35400; transform: scale(1.02); }
+.btn-primary:hover { background-color: #d35400; }
 
 .btn-like { 
     transition: transform 0.2s; 
@@ -44,3 +39,8 @@ h1, h2, h5 {
 }
 
 .text-muted { color: #a1887f !important; }
+
+/* Makes the create form stay visible as you scroll the feed */
+.sticky-top {
+    z-index: 1020;
+}
