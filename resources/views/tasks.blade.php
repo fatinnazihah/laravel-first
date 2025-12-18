@@ -7,15 +7,7 @@
     <link rel="icon" href="https://img.icons8.com/emoji/48/cat-face.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body { background-color: #fdf5e6; font-family: 'Nunito', sans-serif; color: #5d4037; }
-        h1, h4, h5 { color: #e67e22; font-weight: 800; }
-        .post-card { border-radius: 20px; border: 3px solid #f3e5ab; box-shadow: 0 6px 15px rgba(230, 126, 34, 0.1); background: white; }
-        .media-container { border-radius: 15px; overflow: hidden; background-color: #000; } /* Black bg helps see if video is loading */
-        .btn-primary { background-color: #e67e22; border: none; border-radius: 50px; font-weight: 700; }
-        .btn-primary:hover { background-color: #d35400; }
-        .btn-like { transition: transform 0.2s; border-color: #ffb6b6; color: #ff4d4d; }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 </head>
 <body>
     <header class="py-3 mb-5 shadow-sm bg-white border-bottom border-warning border-3">
@@ -28,7 +20,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h4 class="fw-bold mb-4">Latest Meows</h4>
+                <h4 class="fw-bold mb-4" style="color: #5d4037;">Latest Meows</h4>
                 @foreach($tasks->reverse() as $post)
                     <div class="card mb-4 post-card">
                         <div class="card-body">
@@ -40,14 +32,14 @@
                                 <p class="card-text mt-2">{{ $post->description }}</p>
                             @endif
                             @if($post->attachment)
-                                <div class="media-container mb-3 border">
+                                <div class="media-container mb-3 border rounded-3 overflow-hidden">
                                     @php $ext = pathinfo($post->attachment, PATHINFO_EXTENSION); @endphp
                                     @if(in_array(strtolower($ext), ['mp4', 'mov', 'avi']))
-                                        <video controls class="w-100 d-block">
+                                        <video controls class="w-100 d-block shadow-sm">
                                             <source src="{{ asset('storage/' . $post->attachment) }}" type="video/mp4">
                                         </video>
                                     @else
-                                        <img src="{{ asset('storage/' . $post->attachment) }}" class="img-fluid w-100 d-block">
+                                        <img src="{{ asset('storage/' . $post->attachment) }}" class="img-fluid w-100 d-block shadow-sm">
                                     @endif
                                 </div>
                             @endif
