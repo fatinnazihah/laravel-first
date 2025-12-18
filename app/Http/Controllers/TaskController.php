@@ -13,4 +13,12 @@ class TaskController extends Controller
         $tasks = Task::all(); 
         return view('tasks', compact('tasks')); 
     }
+
+    public function store(Request $request) {
+    Task::create([
+        'title' => $request->title,
+        'is_completed' => false
+    ]);
+    return redirect('/');
+}
 }
